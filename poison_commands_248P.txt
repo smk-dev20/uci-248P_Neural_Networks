@@ -1,0 +1,31 @@
+module load python/3.6.8
+
+*********Module2**********
+cd 248PNeuralNW/248P_Module2
+python3 dnn.py
+
+********Module3*************
+cd 248PNeuralNW/248P_Module3
+python3 MovieReview.py
+python3 NewsWires.py
+python3 HousePrices.py
+
+*********Module5*************
+cd 248PNeuralNW/248P_Module5
+python3 MnistCNN.py
+python3 CatsDogsSmall.py /home/lopes/Datasets/dogs-vs-cats 
+/home/smkoshy/248PNeuralNW/248P_Module5/cats_and_dogs_small
+python3 CatsDogsPretrained.py /home/smkoshy/248PNeuralNW/248P_Module5/cats_and_dogs_small 
+
+*************Module6**********
+cd 248PNeuralNW/248P_Module6
+python3 WordEmbeddings.py
+python3 WordEmbeddingsPretrained.py
+python3 MovieReviewRNN.py
+python3 MovieReviewLSTM.py
+
+python3 JenaRNNStack.py
+python3 JenaRNNBiDirect.py
+
+python3 MovieReviewConv1D.py
+python3 MovieReviewCNNRNN.py

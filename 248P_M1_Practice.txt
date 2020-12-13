@@ -1,0 +1,124 @@
+/**
+University of California, Irvine 
+MSWE 248P
+Sherlin Mary Koshy(smkoshy)
+**/
+#Interactions with Python interpreter on poison.ics.uci.edu for Module 1
+
+#Code reference : https://github.com/fchollet/deep-learning-with-python-notebooks/blob/master/2.1-a-first-look-at-a-neural-network.ipynb
+smkoshy@poison 19:45:39 ~/248PNeuralNW
+$ python3
+Python 3.6.8 (default, Mar 12 2019, 13:08:49)
+[GCC 4.8.5 20150623 (Red Hat 4.8.5-28)] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import tensorflow.keras
+2020-10-22 19:46:00.527360: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcudart.so.10.1
+>>> from tensorflow.keras.datasets import mnist
+>>> (train_images, train_labels),(test_images, test_labels) = mnist.load_data()
+>>> train_images.shape
+(60000, 28, 28)
+>>> len(train_labels)
+60000
+>>> train_labels
+array([5, 0, 4, ..., 5, 6, 8], dtype=uint8)
+>>> test_images.shape
+(10000, 28, 28)
+>>> len(test_labels)
+10000
+>>> test_labels
+array([7, 2, 1, ..., 4, 5, 6], dtype=uint8)
+>>> from tensorflow.keras import models
+>>> from tensorflow.keras import layers
+>>> network = models.Sequential()
+2020-10-22 19:50:14.270408: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcuda.so.1
+2020-10-22 19:50:14.296079: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1716] Found device 0 with properties:
+pciBusID: 0000:18:00.0 name: TITAN Xp computeCapability: 6.1
+coreClock: 1.582GHz coreCount: 30 deviceMemorySize: 11.91GiB deviceMemoryBandwidth: 510.07GiB/s
+2020-10-22 19:50:14.297484: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1716] Found device 1 with properties:
+pciBusID: 0000:3b:00.0 name: TITAN Xp computeCapability: 6.1
+coreClock: 1.582GHz coreCount: 30 deviceMemorySize: 11.91GiB deviceMemoryBandwidth: 510.07GiB/s
+2020-10-22 19:50:14.298842: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1716] Found device 2 with properties:
+pciBusID: 0000:86:00.0 name: TITAN Xp computeCapability: 6.1
+coreClock: 1.582GHz coreCount: 30 deviceMemorySize: 11.91GiB deviceMemoryBandwidth: 510.07GiB/s
+2020-10-22 19:50:14.304300: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1716] Found device 3 with properties:
+pciBusID: 0000:af:00.0 name: TITAN Xp computeCapability: 6.1
+coreClock: 1.582GHz coreCount: 30 deviceMemorySize: 11.91GiB deviceMemoryBandwidth: 510.07GiB/s
+2020-10-22 19:50:14.304413: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcudart.so.10.1
+2020-10-22 19:50:14.309168: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcublas.so.10
+2020-10-22 19:50:14.313364: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcufft.so.10
+2020-10-22 19:50:14.314704: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcurand.so.10
+2020-10-22 19:50:14.320706: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcusolver.so.10
+2020-10-22 19:50:14.323414: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcusparse.so.10
+2020-10-22 19:50:14.335017: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcudnn.so.7
+2020-10-22 19:50:14.352368: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1858] Adding visible gpu devices: 0, 1, 2, 3
+2020-10-22 19:50:14.353498: I tensorflow/core/platform/cpu_feature_guard.cc:142] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN)to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2020-10-22 19:50:14.390448: I tensorflow/core/platform/profile_utils/cpu_utils.cc:104] CPU Frequency: 2200000000 Hz
+2020-10-22 19:50:14.399944: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x4859b90 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-10-22 19:50:14.400017: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+2020-10-22 19:50:15.099396: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x4037fa0 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+2020-10-22 19:50:15.099513: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): TITAN Xp, Compute Capability 6.1
+2020-10-22 19:50:15.099559: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (1): TITAN Xp, Compute Capability 6.1
+2020-10-22 19:50:15.099617: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (2): TITAN Xp, Compute Capability 6.1
+2020-10-22 19:50:15.099657: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (3): TITAN Xp, Compute Capability 6.1
+2020-10-22 19:50:15.102716: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1716] Found device 0 with properties:
+pciBusID: 0000:18:00.0 name: TITAN Xp computeCapability: 6.1
+coreClock: 1.582GHz coreCount: 30 deviceMemorySize: 11.91GiB deviceMemoryBandwidth: 510.07GiB/s
+2020-10-22 19:50:15.104139: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1716] Found device 1 with properties:
+pciBusID: 0000:3b:00.0 name: TITAN Xp computeCapability: 6.1
+coreClock: 1.582GHz coreCount: 30 deviceMemorySize: 11.91GiB deviceMemoryBandwidth: 510.07GiB/s
+2020-10-22 19:50:15.105550: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1716] Found device 2 with properties:
+pciBusID: 0000:86:00.0 name: TITAN Xp computeCapability: 6.1
+coreClock: 1.582GHz coreCount: 30 deviceMemorySize: 11.91GiB deviceMemoryBandwidth: 510.07GiB/s
+2020-10-22 19:50:15.106996: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1716] Found device 3 with properties:
+pciBusID: 0000:af:00.0 name: TITAN Xp computeCapability: 6.1
+coreClock: 1.582GHz coreCount: 30 deviceMemorySize: 11.91GiB deviceMemoryBandwidth: 510.07GiB/s
+2020-10-22 19:50:15.107077: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcudart.so.10.1
+2020-10-22 19:50:15.107125: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcublas.so.10
+2020-10-22 19:50:15.107161: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcufft.so.10
+2020-10-22 19:50:15.107196: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcurand.so.10
+2020-10-22 19:50:15.107230: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcusolver.so.10
+2020-10-22 19:50:15.107263: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcusparse.so.10
+2020-10-22 19:50:15.107300: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcudnn.so.7
+2020-10-22 19:50:15.118614: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1858] Adding visible gpu devices: 0, 1, 2, 3
+2020-10-22 19:50:15.118695: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcudart.so.10.1
+2020-10-22 19:50:17.883272: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1257] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-10-22 19:50:17.883372: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1263]      0 1 2 3
+2020-10-22 19:50:17.883396: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1276] 0:   N Y Y Y
+2020-10-22 19:50:17.883417: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1276] 1:   Y N Y Y
+2020-10-22 19:50:17.883474: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1276] 2:   Y Y N Y
+2020-10-22 19:50:17.883495: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1276] 3:   Y Y Y N
+2020-10-22 19:50:17.889757: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1402] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 184 MB memory) -> physical GPU (device: 0, name: TITAN Xp, pci bus id: 0000:18:00.0, compute capability: 6.1)
+2020-10-22 19:50:17.892322: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1402] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:1 with 10969 MB memory) -> physical GPU (device: 1, name: TITAN Xp, pci bus id: 0000:3b:00.0, compute capability: 6.1)
+2020-10-22 19:50:17.894730: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1402] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:2 with 10969 MB memory) -> physical GPU (device: 2, name: TITAN Xp, pci bus id: 0000:86:00.0, compute capability: 6.1)
+2020-10-22 19:50:17.898426: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1402] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:3 with 10969 MB memory) -> physical GPU (device: 3, name: TITAN Xp, pci bus id: 0000:af:00.0, compute capability: 6.1)
+>>> network.add(layers.Dense(512, activation='relu', input_shape=(28 * 28,)))
+>>> network.add(layers.Dense(10, activation='softmax'))
+>>> network.compile(optimizer='rmsprop', loss='categorical_crossentropy', metrics=['accuracy'])
+>>> train_images = train_images.reshape((60000, 28 * 28))
+>>> tran_images = train_images.astype('float32')/255
+>>> train_images = tran_images
+>>> test_images = test_images.reshape((10000, 28 * 28))
+>>> test_images = test_images.astype('float32')/255
+>>> from tensorflow.keras.utils import to_categorical
+>>> train_labels = to_categorical(train_labels)
+>>> test_labels = to_categorical(test_labels)
+>>> network.fit(train_images, train_labels, epochs=5, batch_size=128)
+Epoch 1/5
+2020-10-22 19:59:13.071882: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcublas.so.10
+469/469 [==============================] - 1s 2ms/step - loss: 0.2574 - accuracy: 0.9258
+Epoch 2/5
+469/469 [==============================] - 1s 2ms/step - loss: 0.1045 - accuracy: 0.9695
+Epoch 3/5
+469/469 [==============================] - 1s 2ms/step - loss: 0.0689 - accuracy: 0.9792
+Epoch 4/5
+469/469 [==============================] - 1s 2ms/step - loss: 0.0504 - accuracy: 0.9849
+Epoch 5/5
+469/469 [==============================] - 1s 2ms/step - loss: 0.0379 - accuracy: 0.9885
+<tensorflow.python.keras.callbacks.History object at 0x7fbb191d2ba8>
+>>> test_loss, test_acc = network.evaluate(test_images, test_labels)
+313/313 [==============================] - 1s 2ms/step - loss: 0.0708 - accuracy: 0.9781
+>>> print('test_acc', test_acc)
+test_acc 0.9781000018119812
+
+
